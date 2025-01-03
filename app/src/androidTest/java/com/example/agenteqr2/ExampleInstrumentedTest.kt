@@ -1,4 +1,4 @@
-package com.example.templateadr
+package com.example.agenteqr2
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

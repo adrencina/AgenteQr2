@@ -1,4 +1,4 @@
-package com.example.templateadr
+package com.example.agenteqr2
 
 import org.junit.Test
 

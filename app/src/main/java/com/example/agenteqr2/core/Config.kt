@@ -1,4 +1,4 @@
-package com.example.templateadr.core
+package com.example.agenteqr2.core
 
 object Config {
     const val BASE_URL = "https://api.example.com/"

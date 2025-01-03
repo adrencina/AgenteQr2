@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.templateadr"
+    namespace = "com.example.agenteqr2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.templateadr"
+        applicationId = "com.example.agenteqr2"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

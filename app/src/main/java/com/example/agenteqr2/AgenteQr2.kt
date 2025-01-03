@@ -1,7 +1,7 @@
-package com.example.templateadr
+package com.example.agenteqr2
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TemplateAdr: Application()
+class AgenteQr2: Application()

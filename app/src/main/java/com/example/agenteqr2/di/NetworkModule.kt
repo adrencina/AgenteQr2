@@ -1,6 +1,6 @@
-package com.example.templateadr.di
+package com.example.agenteqr2.di
 
-import com.example.templateadr.core.Config
+import com.example.agenteqr2.core.Config
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
