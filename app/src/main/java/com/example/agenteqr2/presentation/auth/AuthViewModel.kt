@@ -17,19 +17,14 @@ class AuthViewModel @Inject constructor(
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> get() = _authState
 
-    fun authenticate(clientId: String, clientSecret: String) {
-        if (clientId.isBlank() || clientSecret.isBlank()) {
-            _authState.value = AuthState.Error("Todos los campos son obligatorios.")
-            return
-        }
-
+    fun exchangeAuthCodeForToken(authCode: String) {
         viewModelScope.launch {
             _authState.value = AuthState.Loading
             try {
-                val token = authRepository.authenticate(clientId, clientSecret)
+                val token = authRepository.exchangeAuthCodeForToken(authCode)
                 _authState.value = AuthState.Success(token)
             } catch (e: Exception) {
-                _authState.value = AuthState.Error("Error de autenticación: ${e.message}")
+                _authState.value = AuthState.Error("Error al obtener el token: ${e.message}")
             }
         }
     }
