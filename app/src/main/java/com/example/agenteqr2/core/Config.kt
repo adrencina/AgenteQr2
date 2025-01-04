@@ -1,6 +1,5 @@
 package com.example.agenteqr2.core
 
 object Config {
-    const val BASE_URL = "https://api.example.com/"
-    const val TIMEOUT_SECONDS = 30L
+    const val BASE_URL = "https://api.tiendanube.com/v1/"
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".presentation.ui.auth.AuthFragment">
+
+    <!-- Logo o ícono de la aplicación -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="Logo de la app"
+        android:src="@android:drawable/ic_menu_gallery" />
+
+    <!-- Campo de texto para Client ID -->
+    <EditText
+        android:id="@+id/clientIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:drawableStart="@android:drawable/btn_dialog"
+        android:hint="Client ID"
+        android:inputType="text"
+        android:padding="12dp" />
+
+    <!-- Campo de texto para Client Secret -->
+    <EditText
+        android:id="@+id/clientSecretEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:drawableStart="@android:drawable/btn_dialog"
+        android:hint="Client Secret"
+        android:inputType="textPassword"
+        android:padding="12dp" />
+
+    <!-- Botón de inicio de sesión -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Login"
+        android:textColor="@color/white" />
+
+    <!-- Indicador de carga -->
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>
