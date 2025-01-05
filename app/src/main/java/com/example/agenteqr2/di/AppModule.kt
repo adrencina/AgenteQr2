@@ -1,5 +1,6 @@
 package com.example.agenteqr2.di
 
+import com.example.agenteqr2.core.Config.BASE_URL
 import com.example.agenteqr2.data.remote.ApiService
 import com.example.agenteqr2.data.repository.AuthRepositoryImpl
 import com.example.agenteqr2.domain.repository.AuthRepository
@@ -31,7 +32,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.tiendanube.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

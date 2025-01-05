@@ -71,6 +71,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // ktor
+    dependencies {
+        implementation("io.ktor:ktor-server-core-jvm:2.3.3")
+        implementation("io.ktor:ktor-server-netty-jvm:2.3.3")
+        implementation("io.ktor:ktor-server-call-logging-jvm:2.3.3")
+        implementation("ch.qos.logback:logback-classic:1.2.11")
+    }
+
+
 }
 
 kapt {

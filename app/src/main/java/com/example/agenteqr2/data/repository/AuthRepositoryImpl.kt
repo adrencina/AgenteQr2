@@ -9,7 +9,26 @@ class AuthRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : AuthRepository {
 
-    suspend fun exchangeAuthCodeForToken(authCode: String): String {
+    override suspend fun authenticate(clientId: String, clientSecret: String): String {
+        // Aquí simulas la autenticación devolviendo un token de prueba
+        // Puedes cambiar esto según el flujo real que quieras implementar
+        val redirectUri = Config.REDIRECT_URI
+
+        val response = apiService.exchangeAuthCode(
+            clientId = clientId,
+            clientSecret = clientSecret,
+            redirectUri = redirectUri,
+            code = "dummy_code" // Cambiarlo por el authorization code real
+        )
+
+        if (response.isSuccessful) {
+            return response.body()?.accessToken ?: throw Exception("Token vacío")
+        } else {
+            throw Exception("Error: ${response.message()}")
+        }
+    }
+
+    override suspend fun exchangeAuthCodeForToken(authCode: String): String {
         val clientId = Config.CLIENT_ID
         val clientSecret = Config.CLIENT_SECRET
         val redirectUri = Config.REDIRECT_URI
