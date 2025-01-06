@@ -5,6 +5,9 @@ plugins {
     // Dagger Hilt
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+
+    // Kotlin Serialization
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -30,15 +33,33 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         viewBinding = true
+    }
+
+    packaging {
+        resources {
+            excludes.addAll(
+                listOf(
+                    "META-INF/io.netty.versions.properties",
+                    "META-INF/INDEX.LIST",
+                    "META-INF/LICENSE",
+                    "META-INF/LICENSE.txt",
+                    "META-INF/NOTICE",
+                    "META-INF/NOTICE.txt"
+                )
+            )
+        }
     }
 }
 
@@ -72,18 +93,26 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // ktor
-    dependencies {
-        implementation("io.ktor:ktor-server-core-jvm:2.3.3")
-        implementation("io.ktor:ktor-server-netty-jvm:2.3.3")
-        implementation("io.ktor:ktor-server-call-logging-jvm:2.3.3")
-        implementation("ch.qos.logback:logback-classic:1.2.11")
-    }
+    // Ktor Server
+    implementation("io.ktor:ktor-server-core-jvm:2.3.3")
+    implementation("io.ktor:ktor-server-netty-jvm:2.3.3")
+    implementation("io.ktor:ktor-server-call-logging-jvm:2.3.3")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
 
+    // Ktor Client Core y CIO Engine
+    implementation("io.ktor:ktor-client-core:2.3.4")
+    implementation("io.ktor:ktor-client-cio:2.3.4")
 
+    // Ktor Features: Json y Logging
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.4")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.4")
+    implementation("io.ktor:ktor-client-logging:2.3.4")
+
+    // Kotlinx Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 }
 
 kapt {
     correctErrorTypes = true
-    useBuildCache = false
+    useBuildCache = true
 }
