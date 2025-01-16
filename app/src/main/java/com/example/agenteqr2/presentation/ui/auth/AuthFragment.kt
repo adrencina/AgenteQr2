@@ -34,7 +34,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loginButton.setOnClickListener {
+        binding.btnAuthenticate.setOnClickListener {
             startAuthorizationFlow()
         }
 
@@ -42,7 +42,7 @@ class AuthFragment : Fragment() {
     }
 
     private fun startAuthorizationFlow() {
-        val authUrl = "${Config.BASE_URL}/apps/authorize" +
+        val authUrl = "https://www.tiendanube.com/apps/authorize" +
                 "?client_id=${Config.CLIENT_ID}" +
                 "&response_type=code" +
                 "&redirect_uri=${Config.REDIRECT_URI}"
@@ -70,7 +70,7 @@ class AuthFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.loadingProgressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.loginButton.isEnabled = !isLoading
+        binding.btnAuthenticate.isEnabled = !isLoading
     }
 
     fun exchangeAuthCodeForToken(authCode: String) {

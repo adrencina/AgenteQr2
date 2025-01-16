@@ -99,6 +99,9 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging-jvm:2.3.3")
     implementation("ch.qos.logback:logback-classic:1.2.11")
 
+    //
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.7.3")
+
     // Ktor Client Core y CIO Engine
     implementation("io.ktor:ktor-client-core:2.3.4")
     implementation("io.ktor:ktor-client-cio:2.3.4")
@@ -110,6 +113,9 @@ dependencies {
 
     // Kotlinx Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    implementation("org.fusesource.jansi:jansi:2.4.0")
+
 }
 
 kapt {

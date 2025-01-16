@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface ApiService {
     @FormUrlEncoded
-    @POST("/apps/authorize/token")
+    @POST("token")
     suspend fun exchangeAuthCode(
         @Field("client_id") clientId: String,
         @Field("client_secret") clientSecret: String,

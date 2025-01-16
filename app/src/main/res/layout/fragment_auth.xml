@@ -42,12 +42,12 @@
 
     <!-- Botón de inicio de sesión -->
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/btn_authenticate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/black"
-        android:text="Login"
+        android:text="Conectar Tienda"
         android:textColor="@color/white" />
 
     <!-- Indicador de carga -->
