@@ -2,6 +2,7 @@ package com.example.agenteqr2.di
 
 import com.example.agenteqr2.core.Config.BASE_URL
 import com.example.agenteqr2.data.remote.ApiService
+import com.example.agenteqr2.data.remote.ProductsApiService
 import com.example.agenteqr2.data.repository.AuthRepositoryImpl
 import com.example.agenteqr2.domain.repository.AuthRepository
 import dagger.Binds
@@ -42,4 +43,11 @@ object NetworkModule {
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideProductsApiService(retrofit: Retrofit): ProductsApiService {
+        return retrofit.create(ProductsApiService::class.java)
+    }
+
 }

@@ -18,29 +18,29 @@
         android:contentDescription="Logo de la app"
         android:src="@android:drawable/ic_menu_gallery" />
 
-    <!-- Campo de texto para Client ID -->
-    <EditText
-        android:id="@+id/clientIdEditText"
+    <!-- Texto descriptivo -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:drawableStart="@android:drawable/btn_dialog"
-        android:hint="Client ID"
-        android:inputType="text"
-        android:padding="12dp" />
+        android:gravity="center"
+        android:text="Conecte su tienda para continuar"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
-    <!-- Campo de texto para Client Secret -->
+
+    <!-- Campo de entrada para el dominio de la tienda -->
     <EditText
-        android:id="@+id/clientSecretEditText"
+        android:id="@+id/domainEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:drawableStart="@android:drawable/btn_dialog"
-        android:hint="Client Secret"
-        android:inputType="textPassword"
-        android:padding="12dp" />
+        android:hint="Nombre del dominio de tu tienda"
+        android:inputType="text"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Botón de inicio de sesión -->
+
+    <!-- Botón para conectar la tienda -->
     <Button
         android:id="@+id/btn_authenticate"
         android:layout_width="match_parent"
@@ -48,7 +48,8 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/black"
         android:text="Conectar Tienda"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
     <!-- Indicador de carga -->
     <ProgressBar
@@ -57,5 +58,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
-
 </LinearLayout>

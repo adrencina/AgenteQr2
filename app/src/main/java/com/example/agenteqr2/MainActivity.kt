@@ -3,6 +3,7 @@ package com.example.agenteqr2
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -37,15 +38,24 @@ class MainActivity : AppCompatActivity() {
         val data: Uri? = intent.data
         data?.let {
             if (it.scheme == "agenteqr2" && it.host == "callback") {
-                val authCode = it.getQueryParameter("code")
-                if (!authCode.isNullOrEmpty()) {
-                    // Llamar al ViewModel para intercambiar el authorization code por un token
-                    val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
-                    if (fragment is AuthFragment) {
-                        fragment.viewModel.exchangeAuthCodeForToken(authCode)
-                    }
+                val token = it.getQueryParameter("token")
+                if (!token.isNullOrEmpty()) {
+                    // Guardar el token en SharedPreferences o pasarlo a una pantalla de bienvenida
+                    val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+                    sharedPreferences.edit().putString("accessToken", token).apply()
+
+                    // Navegar a la pantalla principal de la app
+                    navigateToHomeScreen()
+                } else {
+                    Toast.makeText(this, "Token no encontrado en el callback.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
+
+    private fun navigateToHomeScreen() {
+        // Reemplaza esta navegación con la lógica de tu app (e.g., NavigationComponent)
+        Toast.makeText(this, "¡Autenticación exitosa! Navegando a la pantalla principal.", Toast.LENGTH_SHORT).show()
+    }
+
 }
