@@ -1,7 +1,6 @@
 package com.example.agenteqr2.presentation.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.agenteqr2.data.remote.model.Product
 import com.example.agenteqr2.databinding.ItemProductBinding
 
-class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ProductViewHolder>(ProductDiffCallback()) {
+class ProductsAdapter(
+    private val onProductClick: ((Product) -> Unit)? = null // Callback opcional
+) : ListAdapter<Product, ProductsAdapter.ProductViewHolder>(ProductDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
@@ -17,7 +18,7 @@ class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ProductViewHolder>(
             parent,
             false
         )
-        return ProductViewHolder(binding)
+        return ProductViewHolder(binding, onProductClick)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
@@ -25,10 +26,19 @@ class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ProductViewHolder>(
         holder.bind(product)
     }
 
-    class ProductViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ProductViewHolder(
+        private val binding: ItemProductBinding,
+        private val onProductClick: ((Product) -> Unit)?
+    ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(product: Product) {
             binding.tvProductName.text = product.name
             binding.tvProductPrice.text = "$${product.price}"
+
+            // Configurar evento de clic
+            binding.root.setOnClickListener {
+                onProductClick?.invoke(product)
+            }
         }
     }
 

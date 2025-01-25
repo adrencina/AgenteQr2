@@ -1,47 +1,29 @@
 package com.example.agenteqr2.presentation.auth
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.agenteqr2.core.UIState
 import com.example.agenteqr2.data.repository.AuthRepositoryImpl
-import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepositoryImpl
 ) : ViewModel() {
 
-    private val _authState = MutableLiveData<AuthState>()
-    val authState: LiveData<AuthState> get() = _authState
-
-    fun authenticate(clientId: String, clientSecret: String) {
-        if (clientId.isBlank() || clientSecret.isBlank()) {
-            _authState.value = AuthState.Error("Todos los campos son obligatorios.")
-            return
-        }
-
-        viewModelScope.launch {
-            _authState.value = AuthState.Loading
-            try {
-                val token = authRepository.authenticate(clientId, clientSecret)
-                _authState.value = AuthState.Success(token)
-            } catch (e: Exception) {
-                _authState.value = AuthState.Error("Error de autenticación: ${e.message}")
-            }
-        }
-    }
+    private val _authState = MutableStateFlow<UIState<String>>(UIState.Loading)
+    val authState: StateFlow<UIState<String>> = _authState
 
     fun exchangeAuthCodeForToken(authCode: String) {
         viewModelScope.launch {
-            _authState.value = AuthState.Loading
+            _authState.value = UIState.Loading
             try {
                 val token = authRepository.exchangeAuthCodeForToken(authCode)
-                _authState.value = AuthState.Success(token)
+                _authState.value = UIState.Success(token)
             } catch (e: Exception) {
-                _authState.value = AuthState.Error("Error al obtener el token: ${e.message}")
+                _authState.value = UIState.Error("Error al obtener el token: ${e.message}")
             }
         }
     }

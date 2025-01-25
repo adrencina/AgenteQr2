@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.agenteqr2.core.UIState
 import com.example.agenteqr2.databinding.FragmentHomeBinding
 import com.example.agenteqr2.presentation.products.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +35,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        observeViewModel()
+//        observeViewModel()
 
         // Simula la carga de productos (reemplaza con tu lógica real)
         val sharedPreferences = requireContext().getSharedPreferences("AppPrefs", 0)
@@ -54,15 +56,28 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
-//        viewModel.products.observe(viewLifecycleOwner) { products ->
-//            productsAdapter.submitList(products)
+//    private fun observeViewModel() {
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.state.collect { state ->
+//                when (state) {
+//                    is UIState.Loading -> {
+//                        binding.progressBar.showIf(true)
+//                        binding.recyclerView.showIf(false)
+//                    }
+//                    is UIState.Success -> {
+//                        binding.progressBar.showIf(false)
+//                        binding.recyclerView.showIf(true)
+//                        adapter.submitList(state.data)
+//                    }
+//                    is UIState.Error -> {
+//                        binding.progressBar.showIf(false)
+//                        binding.recyclerView.showIf(false)
+//                        Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
 //        }
-//
-//        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-//            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-//        }
-    }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
